@@ -1,0 +1,88 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container mt-5 mb-5">
+    <form class="row" method="post">
+        {% csrf_token %}
+        <div class="col-12 text-center mb-5">
+            <h2>Enter Vaccine Information</h2>
+        </div>
+        <div class="col-12 col-md-6 form-group">
+            <label>Author Name*</label>
+            {{form.author}}
+            {{form.author.errors}}
+        </div>
+        <div class="col-12 col-md-6 form-group">
+            <label>Institution Name*</label>
+            {{form.institution}}
+        </div>
+        <div class="col-12 form-group">
+            <label>Institution Website Link*</label>
+            {{form.institution_website}}
+        </div>
+
+        <div class="col-12 col-md-6 form-group">
+            <label>Author Phone*</label>
+            {{form.author_phone}}
+        </div>
+
+        <div class="col-12 col-md-6 form-group">
+            <label>Author Email*</label>
+            {{form.author_email}}
+        </div>
+
+        <div class="col-12 col-md-6 form-group">
+            <label>Date of Research*</label>
+            {{form.date_of_research}}
+        </div>
+
+        <div class="col-12 form-group">
+            <label>Research Title*</label>
+            {{form.research_title}}
+        </div>
+
+        <div class="col-12 form-group">
+            <label>Research Link*</label>
+            {{form.research_link}}
+        </div>
+
+        <div class="col-12 form-group">
+            <label>Keywords*</label>
+            {{form.keywords}}
+        </div>
+
+        <div class="col-12 form-group">
+            <label>Notes*</label>
+            {{form.notes}}
+        </div>
+
+        
+        <div class="col-12 mb-5 text-danger">
+            {% for field in form %}
+                <ul>
+                    {% for error in field.errors  %}
+                        <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% endfor %}
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <div class="col-3"></div>
+        <div class="col-6">
+            <button class="btn btn-primary w-100">Submit</button>
+        </div>
+        <div class="col-3"></div>
+
+    </form>
+</div>
+
+{% endblock body%}
